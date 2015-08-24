@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using SimpleWebAPI.Models;
 
 namespace SimpleWebAPI.Controllers
 {
@@ -16,19 +17,31 @@ namespace SimpleWebAPI.Controllers
 	///[RoutePrefix(System.Web.Mvc.Routing.PROJECT_ROOT + Routing.ROUTE_PREFIX + "courses")]
     public class CoursesController : ApiController
     {
-        public class Course
+        private static List<Course> _courses;
+        public CoursesController()
         {
-            String Name;
-            int TemplateID;
-            int ID;
-            DateTime StartDate;
-            DateTime EndDate;
-        }
-
-        public class Student
-        {
-            int SSN;
-            String Name;
+            if(_courses == null)
+            {
+                _courses = new List<Course>
+                {
+                    new Course
+                    {
+                        ID         = 1,
+                        Name       = "Web services",
+                        TemplateID = "T-514-VEFT",
+                        StartDate  = DateTime.Now,
+                        EndDate    = DateTime.Now.AddMonths(3)
+                    },
+                    new Course
+                    {
+                        ID         = 2,
+                        Name       = "App Development",
+                        TemplateID = "T-433-ANDR",
+                        StartDate  = DateTime.Now,
+                        EndDate    = DateTime.Now.AddMonths(3)
+                    }
+                };
+            }
         }
 
         [HttpGet]
