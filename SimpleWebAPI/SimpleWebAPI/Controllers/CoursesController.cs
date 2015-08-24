@@ -74,6 +74,7 @@ namespace SimpleWebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("")]
         public List<Course> GetCourses(){
             return _courses;
         }
