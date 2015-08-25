@@ -101,9 +101,14 @@ namespace SimpleWebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Course))]
-        public IHttpActionResult AddCourse(String name, String templateID, DateTime startDate, DateTime endDate)
+        public IHttpActionResult AddCourse(Course newCourse)
         {
+            // Checking if the object is not valid
+            if (newCourse == null) throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+            if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+
             // Generating an ID for the object
             int id = _courses.Last().ID + 1;
 
@@ -111,10 +116,10 @@ namespace SimpleWebAPI.Controllers
             Course course = new Course
             {
                 ID = id,
-                Name = name,
-                TemplateID = templateID,
-                StartDate = startDate,
-                EndDate = endDate
+                Name = newCourse.Name,
+                TemplateID = newCourse.TemplateID,
+                StartDate = newCourse.StartDate,
+                EndDate = newCourse.EndDate
             };
             _courses.Add(course);
 
@@ -126,20 +131,24 @@ namespace SimpleWebAPI.Controllers
         [HttpPut]
         [ResponseType(typeof(Course))]
         [Route("{id:int}")]
-        public IHttpActionResult UpdateCourse(int id, String name, String templateID, DateTime startDate, DateTime endDate)
+        public IHttpActionResult UpdateCourse(int id, Course newCourse)
         {
+            // Checking if the object is not valid
+            if (newCourse == null) throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+            if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+
             // Finding the course
-            var course = _courses.Find(x => id == x.ID);
+            var course = _courses.Find(x => newCourse.ID == x.ID);
             if (course == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
             //Course was found, updating it
-            course.Name = name;
-            course.TemplateID = templateID;
-            course.StartDate = startDate;
-            course.EndDate = endDate;
+            course.Name = newCourse.Name;
+            course.TemplateID = newCourse.TemplateID;
+            course.StartDate = newCourse.StartDate;
+            course.EndDate = newCourse.EndDate;
             return Ok();
         }
 
@@ -190,8 +199,12 @@ namespace SimpleWebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("{id:int}/students")]
-        public IHttpActionResult AddStudent(int id, String ssn, String name)
+        public IHttpActionResult AddStudent(int id, Student newStudent)
         {
+            // Checking if the object is not valid
+            if (newStudent == null) throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+            if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+
             // Finding the course
             var course = _courses.Find(x => id == x.ID);
             if (course == null)
@@ -203,8 +216,8 @@ namespace SimpleWebAPI.Controllers
             // it to the user list
             Student student = new Student
             {
-                SSN = ssn,
-                Name = name
+                SSN = newStudent.SSN,
+                Name = newStudent.Name
             };
             course.Students.Add(student);
             var location = Url.Link("GetStudents", new { id = course.ID });
