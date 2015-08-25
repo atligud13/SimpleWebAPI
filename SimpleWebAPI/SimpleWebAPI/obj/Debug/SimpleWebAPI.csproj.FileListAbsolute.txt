@@ -75,3 +75,4 @@ C:\Users\Atli\Documents\HR\Haust2015\Vefþjónustur\Verkefni\SimpleWebAPI\Simple
 C:\Users\Atli\Documents\HR\Haust2015\Vefþjónustur\Verkefni\SimpleWebAPI\SimpleWebAPI\SimpleWebAPI\obj\Debug\SimpleWebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Atli\Documents\HR\Haust2015\Vefþjónustur\Verkefni\SimpleWebAPI\SimpleWebAPI\SimpleWebAPI\obj\Debug\SimpleWebAPI.dll
 C:\Users\Atli\Documents\HR\Haust2015\Vefþjónustur\Verkefni\SimpleWebAPI\SimpleWebAPI\SimpleWebAPI\obj\Debug\SimpleWebAPI.pdb
+C:\Users\Atli\Documents\HR\Haust2015\Vefþjónustur\Verkefni\SimpleWebAPI\SimpleWebAPI\SimpleWebAPI\bin\XMLDocument.xml

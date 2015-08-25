@@ -128,6 +128,12 @@ namespace SimpleWebAPI.Controllers
             return Created(location, course);
         }
 
+        /// <summary>
+        /// Updates the course with the given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newCourse"></param>
+        /// <returns></returns>
         [HttpPut]
         [ResponseType(typeof(Course))]
         [Route("{id:int}")]
